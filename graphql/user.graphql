@@ -6,3 +6,9 @@ type User {
     updated_at: DateTime!
     posts: [Post!]! @hasMany
 }
+
+input CreateUserInput {
+    name: String!
+    email: String!
+    password: String!
+}

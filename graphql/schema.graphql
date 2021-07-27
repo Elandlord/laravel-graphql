@@ -16,14 +16,9 @@ type Query {
     post(id: Int! @eq): Post @find
 }
 
-input CreateUserInput {
-    name: String!
-    email: String!
-    password: String!
-}
-
 type Mutation {
     createUser(input: CreateUserInput! @spread): User! @field(resolver: "CreateUser@create")
+    deleteUser(id: ID!): User @delete @can(ability: "delete")
 }
 
 
