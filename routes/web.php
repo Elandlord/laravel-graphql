@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+
+    $user = User::first();
+
+    if( $user->tokens()->count() === 0) {
+        $token = $user->createToken('test-token');
+        dd($token->plainTextToken);
+    }
+
     return view('welcome');
 });
