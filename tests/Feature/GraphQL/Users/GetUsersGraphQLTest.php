@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\GraphQL;
+namespace Tests\Feature\GraphQL\Users;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -63,7 +63,7 @@ class GetUsersGraphQLTest extends TestCase
     {
         return $this->graphQL(/** @lang GraphQL */"
         {
-          users(page: {$page}) {
+          users(page: $page) {
               data {
                   id
                   name
@@ -74,6 +74,8 @@ class GetUsersGraphQLTest extends TestCase
               }
           }
         }
-        ");
+        ", [
+            'page' => $page
+        ]);
     }
 }
