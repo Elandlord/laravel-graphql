@@ -9,6 +9,6 @@ type User {
 
 input CreateUserInput {
     name: String!
-    email: String!
-    password: String!
+    email: String! @rules(apply: ["email", "unique:users,email"])
+    password: String! @rules(apply: ["min:5"])
 }
