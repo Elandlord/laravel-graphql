@@ -23,6 +23,7 @@ type Mutation {
 
     createPost(input: CreatePostInput! @spread): Post! @guard @field(resolver: "CreatePost@create")
     updatePost(id: ID!, input: UpdatePostInput! @spread): Post! @guard @can(ability: "update", find: "id") @update
+    deletePost(id: ID!): Post @delete @guard @can(ability: "delete", find: "id")
 }
 
 

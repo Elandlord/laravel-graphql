@@ -65,7 +65,7 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return !empty($user) && intval($post->author_id) === intval($user->id);
     }
 
     /**
