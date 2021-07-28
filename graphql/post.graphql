@@ -10,3 +10,8 @@ input CreatePostInput {
     title: String!
     content: String!
 }
+
+input UpdatePostInput {
+    title: String!
+    content: String!
+}
