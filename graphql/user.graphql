@@ -12,3 +12,8 @@ input CreateUserInput {
     email: String! @rules(apply: ["email", "unique:users,email"])
     password: String! @rules(apply: ["min:5"])
 }
+
+input UpdateUserInput {
+    name: String!
+    password: String @rules(apply: ["min:5"])
+}

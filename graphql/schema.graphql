@@ -18,6 +18,7 @@ type Query {
 
 type Mutation {
     createUser(input: CreateUserInput! @spread): User! @field(resolver: "CreateUser@create")
+    updateUser(id: ID!, input: UpdateUserInput! @spread): User! @guard @can(ability: "update", find: "id") @field(resolver: "UpdateUser@update")
     deleteUser(id: ID!): User @delete @guard @can(ability: "delete", find: "id")
 }
 
