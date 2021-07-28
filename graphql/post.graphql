@@ -5,3 +5,8 @@ type Post {
     author: User! @belongsTo
     comments: [Comment!]! @hasMany
 }
+
+input CreatePostInput {
+    title: String!
+    content: String!
+}
