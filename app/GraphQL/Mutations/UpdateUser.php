@@ -13,7 +13,7 @@ class UpdateUser
 
         $user->name = $args['name'];
 
-        if (in_array('password', $args)) {
+        if (key_exists('password', $args)) {
             $user->password = Hash::make($args['password']);
         }
 

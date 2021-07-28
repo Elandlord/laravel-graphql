@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Testing\TestResponse;
 use Nuwave\Lighthouse\Testing\MakesGraphQLRequests;
 use Tests\TestCase;
@@ -52,6 +53,22 @@ class UpdateUserGraphQLTest extends TestCase
             'id' => $this->user->id,
             'name' => $this->data['name'],
         ]);
+
+        $updatedUser = User::first();
+        $this->assertTrue(Hash::check($this->data['password'], $updatedUser->password));
+    }
+
+    /** @test */
+    public function it_can_omit_password()
+    {
+        $newPassword = $this->data['password'];
+        unset($this->data['password']);
+        $response = $this->updateUser($this->data);
+
+        $response->assertSuccessful();
+
+        $updatedUser = User::first();
+        $this->assertFalse(Hash::check($newPassword, $updatedUser->password));
     }
 
     /** @test */
